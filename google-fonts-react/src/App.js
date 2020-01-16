@@ -13,6 +13,8 @@ class App extends React.Component {
     this.state = {
       fonts: null,
       filter: "",
+      maxLoading: 10,
+      filteredFonts: null,
       theme: themes.light,
       fontSize: themes.fontSize,
       toggleTheme: this.toggleTheme,
@@ -27,7 +29,8 @@ class App extends React.Component {
         return result.json();
       }).then(fonts => {
         this.setState({
-          fonts: fonts.items
+          fonts: fonts.items,
+          filteredFonts: fonts.items
         })
       })
     } catch (error) {
@@ -36,6 +39,11 @@ class App extends React.Component {
   }
   componentDidMount() {
     this._getFontList();
+    window.addEventListener('scroll', (e) => {
+      if (document.documentElement.scrollTop + window.innerHeight === document.documentElement.scrollHeight) {
+        this.setState({ maxLoading: this.state.maxLoading + 20 })
+      }
+    })
   }
   toggleTheme = () => {
     this.setState(state => ({
@@ -46,19 +54,13 @@ class App extends React.Component {
     }));
   };
   handleSearch = text => {
-    this.setState({ filter: text })
+    this.setState({ maxLoading: 10, filteredFonts: this.state.fonts.filter(font => font.family.toLocaleLowerCase().includes(text)) })
   }
   render() {
-    let fonts = this.state.fonts != null ? this.state.fonts.map((font, i) => {
-      if (this.state.filter !== "") {
-        if (font.family.toLocaleLowerCase().includes(this.state.filter))
-          return <Font value={font} color={this.state.theme} key={i} />
-        else return true
-      }
-      if (i > 10)
+    let fonts = this.state.fonts != null ? this.state.filteredFonts.map((font, i) => {
+      if (i > this.state.maxLoading)
         return true
       return <Font value={font} color={this.state.theme} key={i} />
-
     }) : "Loading";
     return (
       <ThemeContext.Provider value={this.state}>
