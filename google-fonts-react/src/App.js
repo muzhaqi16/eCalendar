@@ -13,11 +13,12 @@ class App extends React.Component {
     this.state = {
       fonts: null,
       filter: "",
-      maxLoading: 10,
+      maxLoading: 20,
       filteredFonts: null,
       theme: themes.light,
       fontSize: themes.fontSize,
       toggleTheme: this.toggleTheme,
+      text: themes.text,
     }
   }
   _getFontList = () => {
@@ -56,17 +57,23 @@ class App extends React.Component {
   handleSearch = text => {
     this.setState({ maxLoading: 10, filteredFonts: this.state.fonts.filter(font => font.family.toLocaleLowerCase().includes(text)) })
   }
+  changeFontSize = size => {
+    this.setState({ fontSize: Number(size) })
+  }
+  changeText = text => {
+    this.setState({ text })
+  }
   render() {
     let fonts = this.state.fonts != null ? this.state.filteredFonts.map((font, i) => {
       if (i > this.state.maxLoading)
         return true
-      return <Font value={font} color={this.state.theme} key={i} />
+      return <Font value={font} text={this.state.text} color={this.state.theme} key={i} size={this.state.fontSize} />
     }) : "Loading";
     return (
       <ThemeContext.Provider value={this.state}>
         <div className="app-container" style={{ backgroundColor: this.state.theme.background, color: this.state.theme.foreground }}>
           <Header />
-          <SearchBar search={this.handleSearch} />
+          <SearchBar search={this.handleSearch} changeFont={this.changeFontSize} changeText={this.changeText} />
           <div className="fonts-container" style={{ flex: 1, display: "flex", flexWrap: "wrap", fontSize: this.state.fontSize, }}>
             {fonts}
           </div>

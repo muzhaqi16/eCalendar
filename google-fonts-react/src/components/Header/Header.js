@@ -10,7 +10,12 @@ class Header extends Component {
             <header>
                 <h1>Google Fonts</h1>
                 <nav>
-                    <li>Favourites</li>
+                    <ul className="navigation-menu">
+                        <li>Catalog</li>
+                        <li>Featured</li>
+                        <li>Articles</li>
+                        <li>About</li>
+                    </ul>
                 </nav>
             </header>
         )

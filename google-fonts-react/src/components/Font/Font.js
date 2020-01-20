@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 import './Font.css';
 class Font extends Component {
     render() {
-        const { kind, family, category, variants, subsets, version, lastModified, files } = this.props.value;
+        const { family, category } = this.props.value;
+        const size = this.props.size;
         return (
             <div className="font-container" style={{ borderTopColor: this.props.color.foreground }}>
                 <h1 className="font-family-name">{family}</h1>
                 <style>
                     @import url({`https://fonts.googleapis.com/css?family=${family.replace(/ /g, '+')}`});
                 </style>
-                <p style={{ fontFamily: `${family},${category}` }}>{this.props.text}</p>
+                <p style={{ fontFamily: `${family}, ${category}`, fontSize: `${size}` }}>{this.props.text}</p>
             </div>
         )
     }

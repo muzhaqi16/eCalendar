@@ -6,7 +6,13 @@
     align-items: baseline;
     border: 1px solid;
     border-radius: 25px;
+    flex-wrap: nowrap;
+    min-width: 700px;
+    overflow: hidden;
+}
 
+#search-input {
+    margin-left: 40px;
 }
 
 .search-bar>select {
