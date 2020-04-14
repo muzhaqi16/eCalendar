@@ -8,12 +8,13 @@ import PropTypes from 'prop-types'
 
 class Calendar extends Component {
     static propTypes = {
-        prop: PropTypes
+        props: PropTypes.object
     }
     calendarComponentRef = React.createRef();
 
     handleDateClick = (arg) => { // bind with an arrow function
-        alert(arg.dateStr)
+        this.props.changeDate(arg.dateStr);
+        // alert(arg.dateStr)
         // if (confirm('Would you like to add an event to ' + arg.dateStr + ' ?')) {
         //   this.setState({  // add new event data
         //     calendarEvents: this.state.calendarEvents.concat({ // creates a new array
