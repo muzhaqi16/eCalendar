@@ -3,6 +3,8 @@ import Calendar from './components/Calendar';
 import './main.scss';
 import Button from 'react-bootstrap/Button';
 import { Row, Container, Col } from 'react-bootstrap';
+import Modal from './components/EventModal';
+
 class App extends React.Component {
 
   constructor(props) {
@@ -12,7 +14,18 @@ class App extends React.Component {
   }
   changeDate = (date) => {
     this.setState({
-      date: new Date(date)
+      date: new Date(date),
+      show: false
+    })
+  }
+  handleShow = () => {
+    this.setState({
+      show: true
+    })
+  }
+  handleClose = () => {
+    this.setState({
+      show: false
     })
   }
   render() {
@@ -28,7 +41,8 @@ class App extends React.Component {
             <Col>
               <h2>{days[this.state.date.getDay()]}</h2>
               <h1>{months[this.state.date.getMonth()]} {this.state.date.getDate()}</h1>
-              <Button>Add</Button>
+              <Button onClick={this.handleShow}>Add</Button>
+              <Modal show={this.state.show} handleClose={this.handleClose} />
             </Col>
           </Row>
         </Container>
