@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Modal, Button } from 'react-bootstrap';
-
+// there is a findDomNode warning that needs to be fixed
 class EventModal extends Component {
     render() {
         return (
