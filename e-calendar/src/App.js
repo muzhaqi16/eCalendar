@@ -3,13 +3,14 @@ import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from "@fullcalendar/interaction";
 import './main.scss'
-
+const calendarComponentRef = React.createRef()
 function App() {
   return (
     <div className="App">
       <FullCalendar
         dateClick={handleDateClick}
         defaultView="dayGridMonth"
+        ref={calendarComponentRef}
         // header={{
         //   left: 'prev,next today',
         //   center: 'title',
