@@ -46,10 +46,7 @@ class Calendar extends Component {
                         right: 'next'
                     }}
                     plugins={[dayGridPlugin, interactionPlugin]}
-                    events={[
-                        { title: 'event 1', date: '2020-04-01' },
-                        { title: 'event 2', date: '2020-04-02' }
-                    ]}
+                    events={this.props.events}
                 />
                 {/* <FontAwesomeIcon icon={faChevronRight} size="5x" /> */}
             </div>

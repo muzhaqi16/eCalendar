@@ -3,6 +3,11 @@ import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
 // there is a findDomNode warning that needs to be fixed
 
 class EventModal extends Component {
+    handleAddEvent = (event) => {
+        event.preventDefault();
+        console.log(event.target.formTitle.value);
+        this.props.handleClose();
+    }
     render() {
         return (
             <>
@@ -14,11 +19,11 @@ class EventModal extends Component {
                         <Modal.Title>Add a new event</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Form>
+                        <Form onSubmit={this.handleAddEvent}>
                             <Form.Group as={Row} controlId="formTitle">
                                 <Form.Label column sm="2">Title</Form.Label>
                                 <Col sm="10">
-                                    <Form.Control defaultValue="Event Title" />
+                                    <Form.Control type="text" placeholder="Event Title" />
                                 </Col>
                             </Form.Group>
                             <Form.Row>
@@ -87,15 +92,21 @@ class EventModal extends Component {
                                     <Form.Control type="text" />
                                 </Col>
                             </Form.Group>
+                            <Row>
+                                <Col align="center">
+                                    <Button variant="primary" type="submit">
+                                        Add Event
+                                </Button>
+                                </Col>
+                            </Row>
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
+
                         <Button variant="secondary" onClick={this.props.handleClose}>
                             Close
                         </Button>
-                        <Button variant="primary" onClick={this.props.handleClose}>
-                            Add Event
-                        </Button>
+
                     </Modal.Footer>
                 </Modal>
             </>
