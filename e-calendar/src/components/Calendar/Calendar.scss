@@ -1,2 +1,10 @@
 @import '~@fullcalendar/core/main.css';
 @import '~@fullcalendar/daygrid/main.css';
+
+.calendar-container {
+    border-top: 4px solid #fac863;
+    padding-top: 20px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}

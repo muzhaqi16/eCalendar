@@ -6,6 +6,10 @@ import './Calendar.scss';
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+// If you need to add arrows on the side of the calendar
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+
 class Calendar extends Component {
     static propTypes = {
         props: PropTypes.object
@@ -27,22 +31,27 @@ class Calendar extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="calendar-container">
+                {/* <FontAwesomeIcon icon={faChevronLeft} size="5x" /> */}
                 <FullCalendar
+                    columnHeaderHtml={
+                        "Hello"
+                    }
                     dateClick={this.handleDateClick}
                     defaultView="dayGridMonth"
                     ref={this.calendarComponentRef}
-                    // header={{
-                    //   left: 'prev,next today',
-                    //   center: 'title',
-                    //   right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-                    // }}
+                    header={{
+                        left: 'prev',
+                        center: 'title',
+                        right: 'next'
+                    }}
                     plugins={[dayGridPlugin, interactionPlugin]}
                     events={[
                         { title: 'event 1', date: '2020-04-01' },
                         { title: 'event 2', date: '2020-04-02' }
                     ]}
                 />
+                {/* <FontAwesomeIcon icon={faChevronRight} size="5x" /> */}
             </div>
         )
     }

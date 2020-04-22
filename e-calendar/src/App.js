@@ -36,6 +36,7 @@ class App extends React.Component {
         <Container fluid>
           <Row>
             <Col xs={12} lg={8}>
+
               <Calendar changeDate={this.changeDate} />
             </Col>
             <Col>
