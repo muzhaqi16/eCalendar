@@ -34,10 +34,8 @@ class Calendar extends Component {
             <div className="calendar-container">
                 {/* <FontAwesomeIcon icon={faChevronLeft} size="5x" /> */}
                 <FullCalendar
-                    columnHeaderHtml={
-                        "Hello"
-                    }
                     dateClick={this.handleDateClick}
+                    // eventClick={(args => { console.log(args) })}
                     defaultView="dayGridMonth"
                     ref={this.calendarComponentRef}
                     header={{
