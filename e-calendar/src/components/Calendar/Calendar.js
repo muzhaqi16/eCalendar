@@ -18,6 +18,8 @@ class Calendar extends Component {
 
     handleDateClick = (arg) => { // bind with an arrow function
         this.props.changeDate(arg.dateStr);
+        //TO DO
+        //Add event by clicking they day on the calendar
         // alert(arg.dateStr)
         // if (confirm('Would you like to add an event to ' + arg.dateStr + ' ?')) {
         //   this.setState({  // add new event data
@@ -41,7 +43,7 @@ class Calendar extends Component {
                     header={{
                         left: 'prev',
                         center: 'title',
-                        right: 'next'
+                        right: 'today , next'
                     }}
                     plugins={[dayGridPlugin, interactionPlugin]}
                     events={this.props.events != null ? this.props.events : ""}

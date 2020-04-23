@@ -24,11 +24,12 @@ class EventModal extends Component {
             title,
             start,
             end,
-            startTime,
-            endTime,
             people,
             location,
             description
+        }
+        if (startTime === "" || endTime === "") {
+            event.allDay = true;
         }
         this.props.addEvent(event);
         this.props.handleClose();
