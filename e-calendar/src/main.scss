@@ -3,3 +3,25 @@
 .App {
     margin: 0 auto;
 }
+
+.main-row {
+    justify-content: center;
+}
+
+.events-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // border-left: 4px solid #fac863;
+}
+
+.events-list {
+    flex: .7;
+    margin: 0;
+    padding-top: 20px;
+}
+
+.events-list li {
+    list-style: none;
+    padding-left: 0;
+}
