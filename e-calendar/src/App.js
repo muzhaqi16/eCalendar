@@ -31,7 +31,7 @@ class App extends React.Component {
   getEvents = date => {
     const events = [];
     this.state.events.forEach(event => {
-      if (event.start && event.start.slice(0, 10) === date) {
+      if (((moment(event.start).isBefore(date) && moment(event.end).isAfter(date)) || moment(event.start, 'YYYY-MM-DD').isSame(date))) {
         let start = event.start.slice(11, 16);
         if (start === "") {
           start = 'All Day'

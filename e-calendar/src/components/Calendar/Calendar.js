@@ -6,6 +6,7 @@ import './Calendar.scss';
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+// TO DO
 // If you need to add arrows on the side of the calendar
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
@@ -18,8 +19,8 @@ class Calendar extends Component {
 
     handleDateClick = (arg) => { // bind with an arrow function
         this.props.changeDate(arg.dateStr);
-        //TO DO
-        //Add event by clicking they day on the calendar
+        // TO DO
+        // Add event by clicking they day on the calendar
         // alert(arg.dateStr)
         // if (confirm('Would you like to add an event to ' + arg.dateStr + ' ?')) {
         //   this.setState({  // add new event data
@@ -52,7 +53,7 @@ class Calendar extends Component {
                         minute: '2-digit', //2-digit, numeric
                         // second: '0-digit', //2-digit, numeric
                         meridiem: false, //lowercase, short, narrow, false (display of AM/PM)
-                        hour12: true //true, false
+                        hour12: false //true, false
                     }}
                 />
                 {/* <FontAwesomeIcon icon={faChevronRight} size="5x" /> */}
