@@ -2,7 +2,7 @@ import React from 'react';
 import Calendar from './components/Calendar';
 import './main.scss';
 import Button from 'react-bootstrap/Button';
-import { Row, Container, Col, ListGroup } from 'react-bootstrap';
+import { Row, Navbar, Container, Col, ListGroup } from 'react-bootstrap';
 import Modal from './components/EventModal';
 import * as moment from 'moment';
 
@@ -64,9 +64,17 @@ class App extends React.Component {
     const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     return (
-      <div className="App">
-        <h1 align="center">eCalendar</h1>
+      <>
         <Container fluid>
+          <Row>
+            <Col md={12}>
+              <Navbar expand="lg" variant="light" bg="light">
+                <Container>
+                  <Navbar.Brand href="#"><h1>eCalendar</h1></Navbar.Brand>
+                </Container>
+              </Navbar>
+            </Col>
+          </Row>
           <Row className="main-row">
             <Col xs={12} sm={12} md={8} lg={9} xl={6}>
               <Calendar changeDate={this.changeDate} events={this.state.events} />
@@ -85,7 +93,7 @@ class App extends React.Component {
             </Col>
           </Row>
         </Container>
-      </div>
+      </>
     );
   }
 }
