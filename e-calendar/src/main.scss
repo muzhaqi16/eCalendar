@@ -10,13 +10,14 @@
 
 .events-container {
     display: flex;
+    margin-top: 20px;
     flex-direction: column;
-    justify-content: center;
-    // border-left: 4px solid #fac863;
+    justify-content: space-around;
+    border-top: 4px solid #fac863;
 }
 
 .events-list {
-    flex: .7;
+    flex: 1;
     margin: 0;
     padding-top: 20px;
 }
@@ -24,4 +25,11 @@
 .events-list li {
     list-style: none;
     padding-left: 0;
+}
+
+@media only screen and (min-width: 991px) {
+    .events-container {
+        border-left: 4px solid #fac863;
+        border-top: none;
+    }
 }

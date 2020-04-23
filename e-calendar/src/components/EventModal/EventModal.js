@@ -24,6 +24,8 @@ class EventModal extends Component {
             title,
             start,
             end,
+            startTime,
+            endTime,
             people,
             location,
             description

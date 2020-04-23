@@ -45,6 +45,13 @@ class Calendar extends Component {
                     }}
                     plugins={[dayGridPlugin, interactionPlugin]}
                     events={this.props.events != null ? this.props.events : ""}
+                    eventTimeFormat={{
+                        hour: '2-digit', //2-digit, numeric
+                        minute: '2-digit', //2-digit, numeric
+                        // second: '0-digit', //2-digit, numeric
+                        meridiem: false, //lowercase, short, narrow, false (display of AM/PM)
+                        hour12: true //true, false
+                    }}
                 />
                 {/* <FontAwesomeIcon icon={faChevronRight} size="5x" /> */}
             </div>

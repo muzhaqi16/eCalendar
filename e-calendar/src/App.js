@@ -29,11 +29,15 @@ class App extends React.Component {
     })
   }
   getEvents = date => {
-    const events = this.state.events.map(event => {
+    const events = [];
+    this.state.events.forEach(event => {
       if (event.start && event.start.slice(0, 10) === date) {
-        return event.title;
+        let start = event.start.slice(11, 16);
+        if (start === "") {
+          start = 'All Day'
+        }
+        events.push({ title: event.title, start });
       }
-      return null;
     })
     this.setState({
       today: events
@@ -74,7 +78,7 @@ class App extends React.Component {
                 <h1>{months[this.state.date.getMonth()]} {this.state.date.getDate()}</h1>
               </div>
               <ListGroup className="events-list" >
-                {this.state.today ? this.state.today.map((event, i) => event && <ListGroup.Item key={i}>{event}</ListGroup.Item>) : ""}
+                {this.state.today.length ? this.state.today.map((event, i) => <ListGroup.Item key={i}><b>{event.start} </b> - {event.title}</ListGroup.Item>) : <ListGroup.Item>No Appoinments</ListGroup.Item>}
               </ListGroup>
               <Button onClick={this.handleShow}>Add</Button>
               <Modal show={this.state.show} handleClose={this.handleClose} addEvent={this.addEvent} />
