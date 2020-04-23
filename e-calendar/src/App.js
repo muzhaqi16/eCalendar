@@ -81,6 +81,7 @@ class App extends React.Component {
   }
   handleClose = () => {
     this.setState({
+      loadEvent: {},
       show: false
     })
   }

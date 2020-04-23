@@ -4,17 +4,9 @@ import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
 import * as moment from 'moment';
 
 class EventModal extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            event: null
-        }
-    }
-    static getDerivedStateFromProps(props, state) {
-        return { event: props.event };
-    }
+    state = { event: this.props.event };
+
     onChange = input => {
-        console.log(input.target.value)
         const eventCopy = this.state.event;
         const { value, id } = input.target;
         eventCopy[id] = value;
@@ -56,7 +48,6 @@ class EventModal extends Component {
     }
     render() {
         const { title, start, end, startTime, endTime, people, location, description } = this.state.event;
-        console.log(this.state.event)
         return (
             <>
                 <Modal
@@ -143,7 +134,7 @@ class EventModal extends Component {
                             <Row>
                                 <Col align="center">
                                     <Button variant="primary" type="submit">
-                                        {Object.keys(this.state.event).length === 0 ? "Add" : "Update"} Event
+                                        {Object.keys(this.props.event).length === 0 ? "Add" : "Update"} Event
                                 </Button>
                                 </Col>
                             </Row>
