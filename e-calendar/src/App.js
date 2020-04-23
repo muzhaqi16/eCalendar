@@ -12,16 +12,15 @@ class App extends React.Component {
     // there is a bug with getting current data according to the timezone
     this.state = {
       date: new Date(),
-      events: [
-        { title: 'event 1', date: '2020-04-01' },
-        { title: 'event 2', date: '2020-04-02' }
-      ],
-      show: true
+      events: localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [],
+      show: false
     };
   }
   addEvent = (event) => {
     this.setState({
       events: [...this.state.events, event]
+    }, () => {
+      localStorage.setItem('events', JSON.stringify(this.state.events));
     })
   }
   changeDate = (date) => {

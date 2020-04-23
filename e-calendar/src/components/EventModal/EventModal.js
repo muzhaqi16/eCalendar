@@ -7,19 +7,23 @@ class EventModal extends Component {
     handleAddEvent = (e) => {
         e.preventDefault();
         const title = e.target.eventTitle.value;
-        const start = moment(e.target.startDate.value).format('YYYY-MM-DD');
-        const end = moment(e.target.endDate.value).format('YYYY-MM-DD');
+        let start = moment(e.target.startDate.value).format('YYYY-MM-DD');
+        let end = moment(e.target.endDate.value).format('YYYY-MM-DD');
         const startTime = e.target.beginHour.value;
         const endTime = e.target.endHour.value;
         const people = e.target.people.value;
         const location = e.target.location.value;
         const description = e.target.location.value;
+        if (startTime) {
+            start += `T${startTime}`;
+        }
+        if (endTime) {
+            end += `T${endTime}`;
+        }
         const event = {
             title,
             start,
             end,
-            startTime,
-            endTime,
             people,
             location,
             description
