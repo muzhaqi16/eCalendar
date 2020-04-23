@@ -15,6 +15,7 @@ class App extends React.Component {
       date: new Date(),
       events: localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [],
       today: [],
+      loadEvent: {},
       show: false
     };
   }
@@ -26,6 +27,29 @@ class App extends React.Component {
       events: [...this.state.events, event]
     }, () => {
       localStorage.setItem('events', JSON.stringify(this.state.events));
+    })
+  }
+  getTime = date => {
+    return moment(date).format("hh:mm");
+  }
+  getDate = date => {
+    return moment(date).format("YYYY-MM-DD");
+  }
+  updateEvent = event => {
+    const { people, location, description } = event.extendedProps;
+    const title = event.title;
+    let start = event.start;
+    let end = event.end;
+    const startTime = this.getTime(start);
+    start = this.getDate(start);
+    const endTime = this.getTime(end);
+    end = this.getDate(end);
+    const newEvent = {
+      title, start, end, people, location, description, startTime, endTime
+    }
+    this.setState({
+      loadEvent: newEvent,
+      show: true
     })
   }
   getEvents = date => {
@@ -77,7 +101,7 @@ class App extends React.Component {
           </Row>
           <Row className="main-row">
             <Col xs={12} sm={12} md={8} lg={9} xl={6}>
-              <Calendar changeDate={this.changeDate} events={this.state.events} />
+              <Calendar changeDate={this.changeDate} updateEvent={this.updateEvent} events={this.state.events} />
             </Col>
             <Col className="events-container" md={4} lg={3}>
               <div>
@@ -89,7 +113,7 @@ class App extends React.Component {
                 {this.state.today.length ? this.state.today.map((event, i) => <ListGroup.Item key={i}><b>{event.start} </b> - {event.title}</ListGroup.Item>) : <ListGroup.Item>No Appoinments</ListGroup.Item>}
               </ListGroup>
               <Button onClick={this.handleShow}>Add</Button>
-              <Modal show={this.state.show} handleClose={this.handleClose} addEvent={this.addEvent} />
+              <Modal show={this.state.show} event={this.state.loadEvent} handleClose={this.handleClose} addEvent={this.addEvent} />
             </Col>
           </Row>
         </Container>

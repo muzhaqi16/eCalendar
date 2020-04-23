@@ -38,7 +38,7 @@ class Calendar extends Component {
                 {/* <FontAwesomeIcon icon={faChevronLeft} size="5x" /> */}
                 <FullCalendar
                     dateClick={this.handleDateClick}
-                    // eventClick={(args => { console.log(args) })}
+                    eventClick={({ event }) => this.props.updateEvent(event)}
                     defaultView="dayGridMonth"
                     ref={this.calendarComponentRef}
                     header={{
