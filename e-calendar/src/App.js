@@ -31,7 +31,7 @@ class App extends React.Component {
   getEvents = date => {
     const events = [];
     this.state.events.forEach(event => {
-      if (((moment(event.start).isBefore(date) && moment(event.end).isAfter(date)) || moment(event.start, 'YYYY-MM-DD').isSame(date))) {
+      if ((moment(event.start).isBefore(date) && moment(event.end).isAfter(date)) || moment(event.start, 'YYYY-MM-DD').isSame(date)) {
         let start = event.start.slice(11, 16);
         if (start === "") {
           start = 'All Day'
@@ -68,10 +68,10 @@ class App extends React.Component {
         <h1 align="center">eCalendar</h1>
         <Container fluid>
           <Row className="main-row">
-            <Col xs={12} sm={10} md={10} lg={9} xl={6}>
+            <Col xs={12} sm={12} md={8} lg={9} xl={6}>
               <Calendar changeDate={this.changeDate} events={this.state.events} />
             </Col>
-            <Col className="events-container" md={10} lg={3}>
+            <Col className="events-container" md={4} lg={3}>
               <div>
                 <h2>{days[this.state.date.getDay()]}</h2>
                 {/* The wrong date is being displayed might need to use moment.js or another library */}
