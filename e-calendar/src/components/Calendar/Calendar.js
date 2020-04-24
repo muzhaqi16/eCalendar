@@ -36,13 +36,25 @@ class Calendar extends Component {
                         center: 'title',
                         right: 'today , next'
                     }}
+                    slotLabelFormat={
+                        {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            omitZeroMinute: false,
+                            meridiem: 'narrow',
+                            hour12: true
+                        }
+                    }
+                    // timeFormat='h:mm'
                     plugins={[dayGridPlugin, interactionPlugin]}
                     events={this.props.events != null ? this.props.events : ""}
                     eventTimeFormat={{
                         hour: '2-digit', //2-digit, numeric
                         minute: '2-digit', //2-digit, numeric
+                        omitZeroMinute: true,
+                        meridiem: 'narrow',
                         // second: '0-digit', //2-digit, numeric
-                        meridiem: false, //lowercase, short, narrow, false (display of AM/PM)
+                        // meridiem: false, //lowercase, short, narrow, false (display of AM/PM)
                         hour12: false //true, false
                     }}
                 />
