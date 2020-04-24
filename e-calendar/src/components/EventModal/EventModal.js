@@ -55,13 +55,17 @@ class EventModal extends Component {
             title,
             start,
             end,
-            hasEnd: true,
+            startTime,
+            endTime,
             people,
             location,
             description
         }
         if (startTime === "" || endTime === "") {
             event.allDay = true;
+        } else {
+            event.startTime = startTime;
+            event.endTime = endTime;
         }
         //if status===false add new event otherwise update
         if (!status) {
