@@ -69,7 +69,7 @@ class EventModal extends Component {
         } else {
             this.props.updateEvent(event);
         }
-        this.props.handleClose();
+        this.closeModal();
     }
     closeModal = () => {
         //reset state before closing

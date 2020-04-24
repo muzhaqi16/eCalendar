@@ -14,7 +14,7 @@ class App extends React.Component {
     // there is a bug with getting current data according to the timezone
     this.state = {
       date: new Date(),
-      events: localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [{ "title": "test", "start": "2020-04-24", "end": "2020-04-24", "startTime": "", "endTime": "", "people": "", "location": "", "description": "", "allDay": false, "id": "d270e535-aec8-4bbf-80cb-9e58b3b9a50d" }, { "title": "Go running at the park", "start": "2020-04-20T06:00", "end": "2020-04-22T08:00", allDay: true, "people": "", "location": "", "description": "", "id": "e9247e9c-ac63-41e8-8d67-c1dad8610302" }],
+      events: localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [{ "title": "test", "start": "2020-04-24", "end": "2020-04-24", "people": "", "location": "", "description": "", "allDay": false, "id": "d270e535-aec8-4bbf-80cb-9e58b3b9a50d" }, { "title": "Go running at the park", "start": "2020-04-20T06:00", "end": "2020-04-22T08:00", allDay: true, "people": "", "location": "", "description": "", "id": "e9247e9c-ac63-41e8-8d67-c1dad8610302" }],
       today: [],
       loadEvent: {},
       show: false
