@@ -35,7 +35,7 @@ class EventModal extends Component {
         })
 
     }
-    handleAddEvent = (e) => {
+    handleAddEvent = (e, status) => {
         e.preventDefault();
         const title = e.target.title.value;
         let start = moment(e.target.start.value).format('YYYY-MM-DD');
@@ -63,7 +63,12 @@ class EventModal extends Component {
         if (startTime === "" || endTime === "") {
             event.allDay = true;
         }
-        this.props.addEvent(event);
+        //if status===false add new event otherwise update
+        if (!status) {
+            this.props.addEvent(event);
+        } else {
+            this.props.deleteEvent(event);
+        }
         this.props.handleClose();
     }
     closeModal = () => {
@@ -84,6 +89,7 @@ class EventModal extends Component {
     }
     render() {
         const { title, start, end, startTime, endTime, people, location, description } = this.state.event;
+
         return (
             <>
                 <Modal
@@ -94,7 +100,7 @@ class EventModal extends Component {
                         <Modal.Title>Add a new event</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Form onSubmit={this.handleAddEvent}>
+                        <Form onSubmit={(e) => this.handleAddEvent(e, Object.keys(this.props.event).length === 0 ? false : true)}>
                             <Form.Group as={Row} controlId="title">
                                 <Form.Label column sm="2">Title</Form.Label>
                                 <Col sm="10">
@@ -177,7 +183,10 @@ class EventModal extends Component {
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
-
+                        {Object.keys(this.props.event).length !== 0 ? <Button variant="danger" onClick={() => this.props.deleteEvent(this.props.event)}>
+                            Delete
+                        </Button> : ""
+                        }
                         <Button variant="secondary" onClick={this.closeModal}>
                             Close
                         </Button>

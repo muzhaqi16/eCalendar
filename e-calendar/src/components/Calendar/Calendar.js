@@ -17,20 +17,9 @@ class Calendar extends Component {
     }
     calendarComponentRef = React.createRef();
 
-    handleDateClick = (arg) => { // bind with an arrow function
+    handleDateClick = (arg) => {
+        //Get all the events for the date that was clicked
         this.props.changeDate(arg.dateStr);
-        // TO DO
-        // Add event by clicking they day on the calendar
-        // alert(arg.dateStr)
-        // if (confirm('Would you like to add an event to ' + arg.dateStr + ' ?')) {
-        //   this.setState({  // add new event data
-        //     calendarEvents: this.state.calendarEvents.concat({ // creates a new array
-        //       title: 'New Event',
-        //       start: arg.date,
-        //       allDay: arg.allDay
-        //     })
-        //   })
-        // }
     }
     render() {
         return (
@@ -38,6 +27,7 @@ class Calendar extends Component {
                 {/* <FontAwesomeIcon icon={faChevronLeft} size="5x" /> */}
                 <FullCalendar
                     dateClick={this.handleDateClick}
+                    //get the event that is about to be updated
                     eventClick={({ event }) => this.props.updateEvent(event)}
                     defaultView="dayGridMonth"
                     ref={this.calendarComponentRef}
