@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { Row, Navbar, Container, Col, ListGroup } from 'react-bootstrap';
 import Modal from './components/EventModal';
 import * as moment from 'moment';
+import { v4 as uuidv4 } from 'uuid';
 
 class App extends React.Component {
 
@@ -22,45 +23,52 @@ class App extends React.Component {
   componentDidMount() {
     this.getEvents(moment(new Date()).format('YYYY-MM-DD'));
   }
-  // update the state with the new event and make a copy of state to local storage for persistent data usage
-  addEvent = (event) => {
-    this.setState({
-      events: [...this.state.events, event]
-    }, () => {
-      localStorage.setItem('events', JSON.stringify(this.state.events));
-    })
-  }
-  deleteEvent = (event) => {
-    const newEvents = this.state.events.filter(e => e.title !== event.title);
-    this.setState({
-      events: newEvents
-    })
-    this.handleClose();
-  }
-  updateEvent = (event) => {
-    console.log('event updated')
-  }
+  //*************** Helper Functions **************/
   getTime = date => {
     return moment(date).format("hh:mm");
   }
   getDate = date => {
     return moment(date).format("YYYY-MM-DD");
   }
+  saveStateToLocalStorage = () => {
+    localStorage.setItem('events', JSON.stringify(this.state.events));
+  }
+  //*************************************************/
+
+  // update the state with the new event and make a copy of state to local storage for persistent data usage
+  addEvent = (event) => {
+    event.id = uuidv4();
+    this.setState(({ events }) => ({
+      events: [...events, event]
+    }), () => {
+      this.saveStateToLocalStorage();
+    })
+  }
+  deleteEvent = (event) => {
+    const newEvents = this.state.events.filter(e => e.id !== event.id);
+    this.setState({
+      events: newEvents
+    }, () => {
+      this.saveStateToLocalStorage();
+    })
+    this.handleClose();
+  }
+  updateEvent = (event) => {
+    const eventId = this.state.loadEvent.id
+    //remove the old event from the state
+    event.id = eventId;
+    this.deleteEvent(event);
+    //keep the previous Id and add the event
+    this.addEvent(event);
+  }
+
   //add the prev
   prepareEventUpdate = event => {
-    const { people, location, description } = event.extendedProps;
-    const title = event.title;
-    let start = event.start;
-    let end = event.end;
-    const startTime = this.getTime(start);
-    start = this.getDate(start);
-    const endTime = this.getTime(end);
-    end = this.getDate(end);
-    const newEvent = {
-      title, start, end, people, location, description, startTime, endTime
-    }
+    // filter the event that is being clicked by using it's id
+    const currentEvent = this.state.events.filter(e => e.id === event.id);
+
     this.setState({
-      loadEvent: newEvent,
+      loadEvent: currentEvent[0],
       show: true
     })
   }
@@ -126,7 +134,7 @@ class App extends React.Component {
                 {this.state.today.length ? this.state.today.map((event, i) => <ListGroup.Item key={i}><b>{event.start} </b> - {event.title}</ListGroup.Item>) : <ListGroup.Item>No Appoinments</ListGroup.Item>}
               </ListGroup>
               <Button onClick={this.handleShow}>Add</Button>
-              <Modal deleteEvent={this.deleteEvent} event={this.state.loadEvent} show={this.state.show} handleClose={this.handleClose} addEvent={this.addEvent} />
+              <Modal deleteEvent={this.deleteEvent} updateEvent={this.updateEvent} event={this.state.loadEvent} show={this.state.show} handleClose={this.handleClose} addEvent={this.addEvent} />
             </Col>
           </Row>
         </Container>

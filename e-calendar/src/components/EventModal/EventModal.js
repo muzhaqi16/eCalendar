@@ -35,7 +35,7 @@ class EventModal extends Component {
         })
 
     }
-    handleAddEvent = (e, status) => {
+    handleAddUpdateEvent = (e, status) => {
         e.preventDefault();
         const title = e.target.title.value;
         let start = moment(e.target.start.value).format('YYYY-MM-DD');
@@ -44,7 +44,7 @@ class EventModal extends Component {
         const endTime = e.target.endTime.value;
         const people = e.target.people.value;
         const location = e.target.location.value;
-        const description = e.target.location.value;
+        const description = e.target.description.value;
         if (startTime) {
             start += `T${startTime}`;
         }
@@ -67,7 +67,7 @@ class EventModal extends Component {
         if (!status) {
             this.props.addEvent(event);
         } else {
-            this.props.deleteEvent(event);
+            this.props.updateEvent(event);
         }
         this.props.handleClose();
     }
@@ -95,12 +95,12 @@ class EventModal extends Component {
                 <Modal
                     size="lg"
                     aria-labelledby="contained-modal-title-vcenter"
-                    centered show={this.props.show} onHide={this.props.handleClose}>
+                    centered show={this.props.show} onHide={this.closeModal}>
                     <Modal.Header closeButton>
                         <Modal.Title>Add a new event</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Form onSubmit={(e) => this.handleAddEvent(e, Object.keys(this.props.event).length === 0 ? false : true)}>
+                        <Form onSubmit={(e) => this.handleAddUpdateEvent(e, Object.keys(this.props.event).length === 0 ? false : true)}>
                             <Form.Group as={Row} controlId="title">
                                 <Form.Label column sm="2">Title</Form.Label>
                                 <Col sm="10">
@@ -183,7 +183,7 @@ class EventModal extends Component {
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
-                        {Object.keys(this.props.event).length !== 0 ? <Button variant="danger" onClick={() => this.props.deleteEvent(this.props.event)}>
+                        {Object.keys(this.props.event).length !== 0 ? <Button variant="danger" onClick={() => { this.props.deleteEvent(this.props.event); this.closeModal() }}>
                             Delete
                         </Button> : ""
                         }
