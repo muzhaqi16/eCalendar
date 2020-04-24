@@ -6,19 +6,34 @@ import * as moment from 'moment';
 class EventModal extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            event: {
+                title: "",
+                start: '',
+                end: '',
+                startTime: '',
+                endTime: '',
+                people: '',
+                location: '',
+                description: ''
+            }
+        }
+        this.closeModal = this.closeModal.bind(this);
     }
     static getDerivedStateFromProps(props, state) {
-        if (Object.keys(state).length === 0) {
-            return props.event;
+        if (Object.keys(props.event).length !== 0) {
+            return { event: props.event };
         }
         return state;
     }
     onChange = input => {
+        const prevEvent = this.state.event;
         const { value, id } = input.target;
+        prevEvent[id] = value;
         this.setState({
-            [id]: value
+            event: prevEvent
         })
+
     }
     handleAddEvent = (e) => {
         e.preventDefault();
@@ -51,8 +66,24 @@ class EventModal extends Component {
         this.props.addEvent(event);
         this.props.handleClose();
     }
+    closeModal = () => {
+        //reset state before closing
+        this.setState({
+            event: {
+                title: "",
+                start: '',
+                end: '',
+                startTime: '',
+                endTime: '',
+                people: '',
+                location: '',
+                description: ''
+            }
+        });
+        this.props.handleClose()
+    }
     render() {
-        const { title, start, end, startTime, endTime, people, location, description } = this.state;
+        const { title, start, end, startTime, endTime, people, location, description } = this.state.event;
         return (
             <>
                 <Modal
@@ -147,7 +178,7 @@ class EventModal extends Component {
                     </Modal.Body>
                     <Modal.Footer>
 
-                        <Button variant="secondary" onClick={this.props.handleClose}>
+                        <Button variant="secondary" onClick={this.closeModal}>
                             Close
                         </Button>
 
