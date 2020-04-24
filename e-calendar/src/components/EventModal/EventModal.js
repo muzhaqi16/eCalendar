@@ -4,15 +4,20 @@ import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
 import * as moment from 'moment';
 
 class EventModal extends Component {
-    state = { event: this.props.event };
-
+    constructor(props) {
+        super(props);
+        this.state = {}
+    }
+    static getDerivedStateFromProps(props, state) {
+        if (Object.keys(state).length === 0) {
+            return props.event;
+        }
+        return state;
+    }
     onChange = input => {
-        const eventCopy = this.state.event;
         const { value, id } = input.target;
-        eventCopy[id] = value;
-
         this.setState({
-            event: eventCopy
+            [id]: value
         })
     }
     handleAddEvent = (e) => {
@@ -47,7 +52,7 @@ class EventModal extends Component {
         this.props.handleClose();
     }
     render() {
-        const { title, start, end, startTime, endTime, people, location, description } = this.state.event;
+        const { title, start, end, startTime, endTime, people, location, description } = this.state;
         return (
             <>
                 <Modal

@@ -114,7 +114,7 @@ class App extends React.Component {
                 {this.state.today.length ? this.state.today.map((event, i) => <ListGroup.Item key={i}><b>{event.start} </b> - {event.title}</ListGroup.Item>) : <ListGroup.Item>No Appoinments</ListGroup.Item>}
               </ListGroup>
               <Button onClick={this.handleShow}>Add</Button>
-              <Modal show={this.state.show} event={this.state.loadEvent} handleClose={this.handleClose} addEvent={this.addEvent} />
+              <Modal event={this.state.loadEvent} show={this.state.show} handleClose={this.handleClose} addEvent={this.addEvent} />
             </Col>
           </Row>
         </Container>
