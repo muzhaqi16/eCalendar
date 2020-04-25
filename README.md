@@ -60,7 +60,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Contributing
 
-> I would love your contribution at making this repo better and adding new features. 
+> I would love your contributions at making this repo better and adding new features. 
 > To get started at contributing at this repo follow the steps below...
 
 ### Step 1
