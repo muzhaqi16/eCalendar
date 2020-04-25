@@ -1,8 +1,8 @@
-[![eCalendar](./images/e_calendar-logo.png)](https://chingu-solo.github.io/solo-koala-78/)
+[![eCalendar](./images/e_calendar-logo.png)](https://e-calendar.now.sh/)
 
-# eCalendar
+# eCalendar 
 
-> Simple calendar for managing your appoinments
+> Simple calendar for managing your appoinments. Check it out here [Live Demo](https://e-calendar.now.sh/)
 
 **Badges**
 
