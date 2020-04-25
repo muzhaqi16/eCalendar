@@ -14,7 +14,8 @@ class App extends React.Component {
     // there is a bug with getting current data according to the timezone
     this.state = {
       date: new Date(),
-      events: localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [{ "title": "test", "start": "2020-04-24", "end": "2020-04-24", "people": "", "location": "", "description": "", "allDay": false, "id": "d270e535-aec8-4bbf-80cb-9e58b3b9a50d" }, { "title": "Go running at the park", "start": "2020-04-20T06:00", "end": "2020-04-22T08:00", allDay: true, "people": "", "location": "", "description": "", "id": "e9247e9c-ac63-41e8-8d67-c1dad8610302" }],
+      //add some sample data if there is nothing saved in localStorage
+      events: localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [],
       today: [],
       loadEvent: {},
       show: false
@@ -43,6 +44,7 @@ class App extends React.Component {
     }), () => {
       this.saveStateToLocalStorage();
     })
+    this.getEvents(moment(new Date()).format('YYYY-MM-DD'));
   }
   deleteEvent = (event) => {
     const newEvents = this.state.events.filter(e => e.id !== event.id);
@@ -51,7 +53,6 @@ class App extends React.Component {
     }, () => {
       this.saveStateToLocalStorage();
     })
-    this.handleClose();
   }
   updateEvent = (event) => {
     const eventId = this.state.loadEvent.id
@@ -79,6 +80,7 @@ class App extends React.Component {
     })
   }
   getEvents = date => {
+    console.log('Getting events for date ', date)
     const events = [];
     this.state.events.forEach(event => {
       if ((moment(event.start).isBefore(date) && moment(event.end).isAfter(date)) || moment(event.start, 'YYYY-MM-DD').isSame(date)) {
@@ -109,6 +111,8 @@ class App extends React.Component {
     this.setState({
       loadEvent: {},
       show: false
+    }, () => {
+      this.getEvents(moment(this.state.date).format('YYYY-MM-DD'));
     })
   }
   render() {
