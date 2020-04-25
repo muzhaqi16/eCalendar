@@ -1,4 +1,4 @@
-[![eCalendar](./images/e_calendar-logo.png)](https://ecalendar-app.herokuapp.com/)
+[![eCalendar](./images/e_calendar-logo.png)](https://chingu-solo.github.io/solo-koala-78/)
 
 # eCalendar
 
