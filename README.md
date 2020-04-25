@@ -81,7 +81,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ---
 
-## Contributors
+## Team
 
 <a href="https://muzhaqi.com" target="_blank">**Artan Muzhaqi**</a>
 
