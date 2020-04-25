@@ -80,7 +80,6 @@ class App extends React.Component {
     })
   }
   getEvents = date => {
-    console.log('Getting events for date ', date)
     const events = [];
     this.state.events.forEach(event => {
       if ((moment(event.start).isBefore(date) && moment(event.end).isAfter(date)) || moment(event.start, 'YYYY-MM-DD').isSame(date)) {
