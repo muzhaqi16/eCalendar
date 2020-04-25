@@ -8,9 +8,9 @@
 
 [![Build Status](http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square)](https://travis-ci.org/badges/badgerbadgerbadger)[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
+**Screenshot**
 
 ![Home page screenshot](./images/screenshot.png)
-
 
 **Demo**
 
@@ -19,16 +19,12 @@
 
 ---
 
-## Table of Contents (Optional)
-
-> If your `README` has a lot of info, section headers might be nice.
+## Table of Contents
 
 - [Installation](#installation)
 - [Features](#features)
 - [Contributing](#contributing)
 - [Team](#team)
-- [FAQ](#faq)
-- [Support](#support)
 - [License](#license)
 
 ---
@@ -54,8 +50,11 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Features
 
-- Going into more detail on code and technologies used
-- I utilized this nifty <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Markdown Cheatsheet</a> for this sample `README`.
+- Add multiple events
+- Update events
+- Delete events
+- Save events to local storage
+- View events for the current day
 
 ---
 
@@ -84,7 +83,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Contributors
 
-| <a href="https://muzhaqi.com" target="_blank">**Artan Muzhaqi**</a> |
+<a href="https://muzhaqi.com" target="_blank">**Artan Muzhaqi**</a>
 
 ---
 
