@@ -2,7 +2,7 @@
 
 # eCalendar 
 
-> Simple calendar for managing your appoinments. Check it out here [Live Demo](https://e-calendar.now.sh/)
+> Simple calendar for managing your appointments. Check it out here [Live Demo](https://e-calendar.now.sh/)
 
 **Badges**
 
