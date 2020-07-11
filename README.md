@@ -33,7 +33,7 @@
 
 ### Clone
 
-- Clone this repo to your local machine using ```git clone https://github.com/Chingu-Solo/solo-koala-78.git```
+- Clone this repo to your local machine using ```git clone https://github.com/muzhaqi16/eCalendar```
 - ```cd``` into ```solo-koala-78```
 
 ### Install
@@ -69,7 +69,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
     - 🍴 Fork this repo!
 
 - **Option 2**
-    - 👯 Clone this repo to your local machine using `https://github.com/joanaz/HireDot2.git`
+    - 👯 Clone this repo to your local machine using `git clone https://github.com/muzhaqi16/eCalendar.git`
 
 ### Step 2
 
@@ -77,7 +77,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### Step 3
 
-- 🔃 Create a new pull request using <a href="https://github.com/Chingu-Solo/solo-koala-78/compare/" target="_blank">`https://github.com/Chingu-Solo/solo-koala-78/compare/`</a>.
+- 🔃 Create a new pull request using <a href="https://github.com/muzhaqi16/eCalendar/compare" target="_blank">`https://github.com/muzhaqi16/eCalendar.git`</a>.
 
 ---
 
