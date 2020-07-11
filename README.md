@@ -34,7 +34,7 @@
 ### Clone
 
 - Clone this repo to your local machine using ```git clone https://github.com/muzhaqi16/eCalendar```
-- ```cd``` into ```solo-koala-78```
+- ```cd``` into ```eCalendar```
 
 ### Install
 
