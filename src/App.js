@@ -13,7 +13,7 @@ class App extends React.Component {
     super(props);
     // there is a bug with getting current data according to the timezone
     this.state = {
-      date: new Date(),
+      date: new Date(new Date().toLocaleDateString()),
       //add some sample data if there is nothing saved in localStorage
       events: localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [],
       today: [],
@@ -90,8 +90,9 @@ class App extends React.Component {
         events.push({ title: event.title, start });
       }
     })
+    // sort events in order according to the time of the day ASC
     this.setState({
-      today: events
+      today: events.sort((a, b) => a.start > b.start)
     })
   }
   changeDate = (date) => {
@@ -115,7 +116,7 @@ class App extends React.Component {
     })
   }
   render() {
-    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     return (
       <>
@@ -134,15 +135,18 @@ class App extends React.Component {
               <Calendar changeDate={this.changeDate} updateEvent={this.prepareEventUpdate} events={this.state.events} />
             </Col>
             <Col className="events-container" md={4} lg={3}>
-              <div>
+              <div className="events-header">
                 <h2>{days[this.state.date.getDay()]}</h2>
-                {/* The wrong date is being displayed might need to use moment.js or another library */}
                 <h1>{months[this.state.date.getMonth()]} {this.state.date.getDate()}</h1>
               </div>
               <ListGroup className="events-list" >
-                {this.state.today.length ? this.state.today.map((event, i) => <ListGroup.Item key={i}><b>{event.start} </b> - {event.title}</ListGroup.Item>) : <ListGroup.Item>No Appoinments</ListGroup.Item>}
+                {this.state.today.length ? this.state.today.map((event, i) => <ListGroup.Item key={i}>
+                  <b>{event.start} </b> - {event.title}
+                </ListGroup.Item>)
+                  : <ListGroup.Item>No Appoinments</ListGroup.Item>
+                }
               </ListGroup>
-              <Button onClick={this.handleShow}>Add</Button>
+              <Button className="add-btn" onClick={this.handleShow}>Add</Button>
               <Modal deleteEvent={this.deleteEvent} updateEvent={this.updateEvent} event={this.state.loadEvent} show={this.state.show} handleClose={this.handleClose} addEvent={this.addEvent} />
             </Col>
           </Row>

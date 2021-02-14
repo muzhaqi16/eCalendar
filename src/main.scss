@@ -1,31 +1,45 @@
 @import "~bootstrap/scss/bootstrap";
 
 .main-row {
-    justify-content: center;
+  justify-content: center;
 }
 
 .events-container {
-    display: flex;
-    margin-top: 20px;
-    flex-direction: column;
-    justify-content: space-around;
+  display: flex;
+  margin-top: 20px;
+  flex-direction: column;
+  justify-content: space-around;
+  border-left: 4px solid #fac863;
+  border-top: none;
+  @media only screen and (max-width: 768px) {
     border-top: 4px solid #fac863;
+    border-left: none;
+    padding-top: 20px;
+    .events-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      h1 {
+        font-size: 1.2rem;
+        margin-left: 1rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+    }
+    .add-btn {
+      margin: 1rem 0;
+    }
+  }
 }
 
 .events-list {
-    flex: 1;
-    margin: 0;
-    padding-top: 20px;
+  flex: 1;
+  margin: 0;
+  padding-top: 20px;
 }
 
 .events-list li {
-    list-style: none;
-    padding-left: 0;
-}
-
-@media only screen and (min-width: 768px) {
-    .events-container {
-        border-left: 4px solid #fac863;
-        border-top: none;
-    }
+  list-style: none;
+  padding-left: 0;
 }
