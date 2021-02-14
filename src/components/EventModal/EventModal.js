@@ -115,7 +115,6 @@ class EventModal extends Component {
     }
     render() {
         const { title, start, end, startTime, endTime, people, location, description } = this.state.event;
-        console.log(this.state)
         return (
             <div className="modal">
                 <Modal
